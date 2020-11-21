@@ -32,7 +32,7 @@ class TestWidget extends StatefulWidget {
 enum _AniProps { example }
 
 class _TestWidgetState extends State<TestWidget> with AnimationMixin {
-  Animation<MultiTweenValues<_AniProps>> animation;
+  late Animation<MultiTweenValues<_AniProps>> animation;
 
   @override
   void initState() {

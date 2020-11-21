@@ -1,3 +1,8 @@
+## 3.0.0-nullsafety.0
+
+- **New:** Upgraded to null-safe
+- **Breaking:** Drop [migration package](https://pub.dev/packages/sa_v1_migration) for `1.x.x` to `2.x.x`. This will remove all classes that are marked as deprecated in `2.x.x`.
+
 ## 2.3.1
 
 - **Fix:** Liquid - Plasma: added fix for render issue in web builds (#45)
