@@ -37,7 +37,7 @@ class MultiTween<P> extends Animatable<MultiTweenValues<P>> {
       _tracks.values
           .map((track) => track.duration)
           .maxBy((a, b) => a.compareTo(b)) ??
-      0.seconds;
+          0.seconds;
 
   /// Adds a new tweening task for a specified [property].
   ///
@@ -77,12 +77,12 @@ class MultiTween<P> extends Animatable<MultiTweenValues<P>> {
   /// ```
   void add(P property, Animatable tween,
       [Duration duration = const Duration(seconds: 1),
-      Curve curve = Curves.linear]) {
+        Curve curve = Curves.linear]) {
     if (!_tracks.containsKey(property)) {
       _tracks[property] = _TweenTrack();
     }
 
-    _tracks[property].add(tween.chain(CurveTween(curve: curve)), duration);
+    _tracks[property]!.add(tween.chain(CurveTween(curve: curve)), duration);
   }
 
   /// Returns a [MultiTweenValues] that is used to get the animated values.
@@ -133,9 +133,9 @@ class MultiTweenValues<P> {
   /// If the property doesn't exist it will throw an assertion exception.
   T get<T>(P property) {
     assert(_tracks.containsKey(property),
-        "Property '${property.toString()}' does not exists.");
+    "Property '${property.toString()}' does not exists.");
 
-    return _computeValue(property);
+    return _computeValue(property)!;
   }
 
   /// Returns the animated value for a specified [property] regarding the
@@ -144,14 +144,25 @@ class MultiTweenValues<P> {
   /// If the property is not defined inside the [MultiTween] it will return
   /// the specified [defaultValue].
   T getOrElse<T>(P property, T defaultValue) {
-    return _tracks.containsKey(property)
+    // ignore: omit_local_variable_types
+    T? value = _tracks.containsKey(property)
         ? _computeValue(property)
         : defaultValue;
+
+    if (value == null) {
+      return defaultValue;
+    }
+
+    return value;
   }
 
-  T _computeValue<T>(P property) {
+  T? _computeValue<T>(P property) {
     var timeWhenTweenStarts = 0.0;
     final track = _tracks[property];
+
+    if (track == null) {
+      return null;
+    }
 
     for (var tweenWithDuration in track.tweensWithDuration) {
       final tweenDurationInTimeDecimals =
@@ -178,11 +189,15 @@ class _TweenTrack {
     tweensWithDuration.add(_TweenWithDuration(tween, duration));
   }
 
-  Duration get duration =>
-      tweensWithDuration
-          .map((tweenWithDuration) => tweenWithDuration.duration)
-          .reduce((value, duration) => value + duration) ??
-      0.seconds;
+  Duration get duration {
+    if (tweensWithDuration.isEmpty) {
+      return 0.seconds;
+    }
+
+    return tweensWithDuration
+        .map((tweenWithDuration) => tweenWithDuration.duration)
+        .reduce((value, duration) => value + duration);
+  }
 }
 
 class _TweenWithDuration {
