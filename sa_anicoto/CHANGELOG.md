@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+- **New:** Upgraded to null-safe
+
 ## 1.2.0
 
 - **New:** Parameter `fps` for frame limiting in `AnimationMixin` `createController()`
