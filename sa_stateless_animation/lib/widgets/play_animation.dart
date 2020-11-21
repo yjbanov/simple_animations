@@ -27,24 +27,24 @@ part of sa_stateless_animation;
 /// recycled your "old animation" which results in strange behavior.
 class PlayAnimation<T> extends StatelessWidget {
   final AnimatedWidgetBuilder<T> builder;
-  final Widget child;
+  final Widget? child;
   final Duration duration;
   final Duration delay;
   final Animatable<T> tween;
   final Curve curve;
-  final int fps;
+  final int? fps;
 
   /// Creates a new PlayAnimation widget.
   /// See class documentation for more information.
   PlayAnimation(
-      {@required this.builder,
-      @required this.tween,
+      {required this.builder,
+      required this.tween,
       this.duration = const Duration(seconds: 1),
       this.delay = Duration.zero,
       this.curve = Curves.linear,
       this.child,
       this.fps,
-      Key key})
+      Key? key})
       : super(key: key);
 
   @override

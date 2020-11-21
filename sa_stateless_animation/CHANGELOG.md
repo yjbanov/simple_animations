@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+- **New:** Upgraded to null-safe
+
 ## 1.1.0
 
 - **New:** Optional parameter `fps` to limit the framerate of `PlayAnimation`, `LoopAnimation`, `MirrorAnimation` and `CustomAnimation`
