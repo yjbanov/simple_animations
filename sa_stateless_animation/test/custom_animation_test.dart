@@ -221,7 +221,6 @@ void main() {
       AnimationStatus.completed.toString()
     ]);
   });
-
 }
 
 const expectedValues1 = [

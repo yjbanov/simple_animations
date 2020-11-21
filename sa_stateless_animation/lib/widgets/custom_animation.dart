@@ -164,10 +164,10 @@ class _CustomAnimationState<T> extends State<CustomAnimation<T>>
       unawaited(aniController.playReverse());
     }
     if (widget.control == CustomAnimationControl.PLAY_FROM_START) {
-        unawaited(aniController.forward(from: 0.0));
+      unawaited(aniController.forward(from: 0.0));
     }
     if (widget.control == CustomAnimationControl.PLAY_REVERSE_FROM_END) {
-          unawaited(aniController.reverse(from: 1.0));
+      unawaited(aniController.reverse(from: 1.0));
     }
     if (widget.control == CustomAnimationControl.LOOP) {
       unawaited(aniController.loop());

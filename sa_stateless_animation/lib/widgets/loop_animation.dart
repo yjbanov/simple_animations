@@ -46,13 +46,12 @@ class LoopAnimation<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAnimation<T>(
-      builder: builder,
-      control: CustomAnimationControl.LOOP,
-      tween: tween,
-      duration: duration,
-      curve: curve,
-      child: child,
-      fps: fps
-    );
+        builder: builder,
+        control: CustomAnimationControl.LOOP,
+        tween: tween,
+        duration: duration,
+        curve: curve,
+        child: child,
+        fps: fps);
   }
 }
