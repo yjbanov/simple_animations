@@ -1,22 +1,22 @@
 name: sa_liquid
 description: Liquid (part of Simple Animations Framework)  provides beautiful visual animations that increases the visual quality of your Flutter application.
-version: 1.0.2
+version: 2.0.0-nullsafety.0
 homepage: https://github.com/felixblaschke/simple_animations/blob/master/sa_liquid
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
   flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  sa_stateless_animation: ^1.1.0
-  supercharged: ^1.11.1
+  sa_stateless_animation: ^2.0.0-nullsafety.0
+  supercharged: ^2.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.9.0
+  pedantic: ^1.10.0-nullsafety.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

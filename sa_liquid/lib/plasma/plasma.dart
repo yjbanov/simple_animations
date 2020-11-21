@@ -56,16 +56,16 @@ class Plasma extends StatelessWidget {
 
   /// If set, the animation will reduce the framerate (fps) to the specified
   /// value.
-  final int fps;
+  final int? fps;
 
   /// Influences the start position of the particle animation.
   final double offset;
 
   /// Prebuild child that's placed inside the Plasma [Widget].
-  final Widget child;
+  final Widget? child;
 
   Plasma({
-    Key key,
+    Key? key,
     this.particles = 10,
     this.foregroundColor = Colors.white,
     this.backgroundColor = Colors.black,
@@ -132,12 +132,12 @@ class _PlasmaPainter extends CustomPainter {
   final double offset;
 
   _PlasmaPainter(
-      {this.particles,
-      this.value,
-      this.color,
-      this.circleSize,
-      this.blendMode,
-      this.offset});
+      {required this.particles,
+        required this.value,
+        required this.color,
+        required this.circleSize,
+        required this.blendMode,
+        required this.offset});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -170,10 +170,13 @@ class InternalPlasmaCompute {
   final double offset;
   final double value;
 
-  double _radius;
+  late double _radius;
 
   InternalPlasmaCompute(
-      {this.canvasSize, this.circleSize, this.offset, this.value}) {
+      {required this.canvasSize,
+        required this.circleSize,
+        required this.offset,
+        required this.value}) {
     _radius = (circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
         .roundToDouble();
   }

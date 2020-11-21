@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.0
+
+- **New:** Upgraded to null-safe
+
 ## 1.0.2
 
 - **Fix:** Dart formatting
