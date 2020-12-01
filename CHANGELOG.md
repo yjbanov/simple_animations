@@ -1,3 +1,7 @@
+## 3.0.0-nullsafety.1
+
+- **New:** Nullsafety migration based on version  `2.4.0`
+
 ## 2.4.0
 
 - **Update:** Merged module packages into a single `simple_animations` package

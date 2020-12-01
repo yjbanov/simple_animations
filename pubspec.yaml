@@ -1,17 +1,16 @@
 name: simple_animations
 description: Powerful framework to create beautiful custom animations in no time.
-version: 2.4.0
+version: 3.0.0-nullsafety.1
 homepage: https://github.com/felixblaschke/simple_animations/blob/master
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  supercharged: ^1.11.1
-  sa_v1_migration: ^1.1.2
-  pedantic: ^1.9.0
+  supercharged: ^2.0.0-nullsafety.0
+  pedantic: ^1.10.0-nullsafety.3
 
 dev_dependencies:
   flutter_test:

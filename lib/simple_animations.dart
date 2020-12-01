@@ -10,8 +10,6 @@ import 'package:flutter/widgets.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:supercharged/supercharged.dart';
 
-export 'package:sa_v1_migration/sa_v1_migration.dart';
-
 part 'anicoto/animation_controller_extension.dart';
 part 'anicoto/animation_mixin.dart';
 part 'liquid/plasma/plasma.dart';

@@ -12,8 +12,8 @@ part of simple_animations;
 ///
 /// See API documentation for [controller] and [createController] for examples.
 mixin AnimationMixin<T extends StatefulWidget> on State<T>
-    implements TickerProvider {
-  AnimationController _mainControllerInstance;
+implements TickerProvider {
+  AnimationController? _mainControllerInstance;
 
   final _controllerInstances = <AnimationController>[];
 
@@ -45,7 +45,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// ```
   AnimationController get controller {
     _mainControllerInstance ??= _newAnimationController();
-    return _mainControllerInstance;
+    return _mainControllerInstance!;
   }
 
   /// Creates an additional [AnimationController] instance that gets initialized
@@ -81,7 +81,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
   /// ```
   AnimationController createController({
     bool unbounded = false,
-    int fps,
+    int? fps,
   }) {
     final instance = _newAnimationController(unbounded: unbounded, fps: fps);
     _controllerInstances.add(instance);
@@ -90,7 +90,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
   AnimationController _newAnimationController({
     bool unbounded = false,
-    int fps,
+    int? fps,
   }) {
     var controller = _instanceController(unbounded: unbounded);
 
@@ -116,7 +116,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
     });
   }
 
-  AnimationController _instanceController({bool unbounded}) {
+  AnimationController _instanceController({required bool unbounded}) {
     if (!unbounded) {
       return AnimationController(vsync: this, duration: 1.seconds);
     } else {
@@ -126,43 +126,38 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
   // below code from TickerProviderStateMixin (dispose method is modified) ----------------------------------------
 
-  Set<Ticker> _tickers;
+  Set<Ticker>? _tickers;
 
   @override
   Ticker createTicker(TickerCallback onTick) {
     _tickers ??= <_WidgetTicker>{};
-    // ignore: omit_local_variable_types
-    final _WidgetTicker result =
-        _WidgetTicker(onTick, this, debugLabel: 'created by $this');
-    _tickers.add(result);
+    final result = _WidgetTicker(onTick, this, debugLabel: 'created by $this');
+    _tickers!.add(result);
     return result;
   }
 
   void _removeTicker(_WidgetTicker ticker) {
     assert(_tickers != null);
-    assert(_tickers.contains(ticker));
-    _tickers.remove(ticker);
+    assert(_tickers!.contains(ticker));
+    _tickers!.remove(ticker);
   }
 
   @override
   void dispose() {
     // Added disposing for created entities
-    if (_mainControllerInstance != null) {
-      _mainControllerInstance.dispose();
-    }
+    _mainControllerInstance?.dispose();
     _controllerInstances.forEach((instance) => instance.dispose());
     // Original dispose code
     assert(() {
       if (_tickers != null) {
-        // ignore: omit_local_variable_types
-        for (Ticker ticker in _tickers) {
+        for (final ticker in _tickers!) {
           if (ticker.isActive) {
             throw FlutterError.fromParts(<DiagnosticsNode>[
               ErrorSummary('$this was disposed with an active Ticker.'),
               ErrorDescription(
                   '$runtimeType created a Ticker via its TickerProviderStateMixin, but at the time '
-                  'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
-                  'be disposed before calling super.dispose().'),
+                      'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
+                      'be disposed before calling super.dispose().'),
               ErrorHint('Tickers used by AnimationControllers '
                   'should be disposed by calling dispose() on the AnimationController itself. '
                   'Otherwise, the ticker will leak.'),
@@ -178,11 +173,9 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 
   @override
   void didChangeDependencies() {
-    // ignore: omit_local_variable_types
-    final bool muted = !TickerMode.of(context);
+    final muted = !TickerMode.of(context);
     if (_tickers != null) {
-      // ignore: omit_local_variable_types
-      for (Ticker ticker in _tickers) {
+      for (final ticker in _tickers!) {
         ticker.muted = muted;
       }
     }
@@ -196,7 +189,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
       'tickers',
       _tickers,
       description: _tickers != null
-          ? 'tracking ${_tickers.length} ticker${_tickers.length == 1 ? "" : "s"}'
+          ? 'tracking ${_tickers!.length} ticker${_tickers!.length == 1 ? "" : "s"}'
           : null,
       defaultValue: null,
     ));
@@ -208,7 +201,7 @@ mixin AnimationMixin<T extends StatefulWidget> on State<T>
 // confusing. Instead we use the less precise but more anodyne "_WidgetTicker",
 // which attracts less attention.
 class _WidgetTicker extends Ticker {
-  _WidgetTicker(TickerCallback onTick, this._creator, {String debugLabel})
+  _WidgetTicker(TickerCallback onTick, this._creator, {String? debugLabel})
       : super(onTick, debugLabel: debugLabel);
 
   final AnimationMixin _creator;
