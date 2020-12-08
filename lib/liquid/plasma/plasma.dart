@@ -92,7 +92,7 @@ class Plasma extends StatelessWidget {
             child: child,
             fps: fps,
             duration:
-            speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
+                speed > 0 ? (120000.0 / speed).round().milliseconds : 1.seconds,
             builder: (context, animatedChild, value) {
               return Stack(
                 children: [
@@ -133,11 +133,11 @@ class _PlasmaPainter extends CustomPainter {
 
   _PlasmaPainter(
       {required this.particles,
-        required this.value,
-        required this.color,
-        required this.circleSize,
-        required this.blendMode,
-        required this.offset});
+      required this.value,
+      required this.color,
+      required this.circleSize,
+      required this.blendMode,
+      required this.offset});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -174,9 +174,9 @@ class InternalPlasmaCompute {
 
   InternalPlasmaCompute(
       {required this.canvasSize,
-        required this.circleSize,
-        required this.offset,
-        required this.value}) {
+      required this.circleSize,
+      required this.offset,
+      required this.value}) {
     _radius = (circleSize * (canvasSize.width + canvasSize.height) / 2 / 3)
         .roundToDouble();
   }

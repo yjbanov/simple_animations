@@ -12,7 +12,7 @@ part of simple_animations;
 ///
 /// See API documentation for [controller] and [createController] for examples.
 mixin AnimationMixin<T extends StatefulWidget> on State<T>
-implements TickerProvider {
+    implements TickerProvider {
   AnimationController? _mainControllerInstance;
 
   final _controllerInstances = <AnimationController>[];
@@ -156,8 +156,8 @@ implements TickerProvider {
               ErrorSummary('$this was disposed with an active Ticker.'),
               ErrorDescription(
                   '$runtimeType created a Ticker via its TickerProviderStateMixin, but at the time '
-                      'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
-                      'be disposed before calling super.dispose().'),
+                  'dispose() was called on the mixin, that Ticker was still active. All Tickers must '
+                  'be disposed before calling super.dispose().'),
               ErrorHint('Tickers used by AnimationControllers '
                   'should be disposed by calling dispose() on the AnimationController itself. '
                   'Otherwise, the ticker will leak.'),

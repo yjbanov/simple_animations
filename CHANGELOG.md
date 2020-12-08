@@ -1,3 +1,7 @@
+## 3.0.0-nullsafety.2
+
+- **New:** Nullsafety migration based on version  `2.4.1`
+
 ## 2.4.1
 
 - **Update:** Dependencies

@@ -35,12 +35,12 @@ class LoopAnimation<T> extends StatelessWidget {
   /// See class documentation for more information.
   LoopAnimation(
       {required this.builder,
-        required this.tween,
-        this.duration = const Duration(seconds: 1),
-        this.curve = Curves.linear,
-        this.child,
-        this.fps,
-        Key? key})
+      required this.tween,
+      this.duration = const Duration(seconds: 1),
+      this.curve = Curves.linear,
+      this.child,
+      this.fps,
+      Key? key})
       : super(key: key);
 
   @override

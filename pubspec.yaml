@@ -1,7 +1,7 @@
 name: simple_animations
 description: Powerful framework to create beautiful custom animations in no time.
 version: 3.0.0-nullsafety.2
-homepage: https://github.com/felixblaschke/simple_animations/blob/master
+homepage: https://github.com/felixblaschke/simple_animations
 
 environment:
   sdk: ">=2.12.0-0 <3.0.0"

@@ -87,18 +87,18 @@ class CustomAnimation<T> extends StatefulWidget {
   /// See class documentation for more information.
   CustomAnimation(
       {required this.builder,
-        required this.tween,
-        this.control = CustomAnimationControl.PLAY,
-        this.curve = Curves.linear,
-        this.duration = const Duration(seconds: 1),
-        this.delay = Duration.zero,
-        this.startPosition = 0.0,
-        this.child,
-        this.animationStatusListener,
-        this.fps,
-        Key? key})
+      required this.tween,
+      this.control = CustomAnimationControl.PLAY,
+      this.curve = Curves.linear,
+      this.duration = const Duration(seconds: 1),
+      this.delay = Duration.zero,
+      this.startPosition = 0.0,
+      this.child,
+      this.animationStatusListener,
+      this.fps,
+      Key? key})
       : assert(startPosition >= 0 && startPosition <= 1,
-  'The property startPosition must have a value between 0.0 and 1.0.'),
+            'The property startPosition must have a value between 0.0 and 1.0.'),
         super(key: key);
 
   @override
