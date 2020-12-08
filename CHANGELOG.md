@@ -1,6 +1,7 @@
-## 3.0.0-nullsafety.1
+## 2.4.1
 
-- **New:** Nullsafety migration based on version  `2.4.0`
+- **Update:** Dependencies
+- **Fix:** Homepage url in `pubspec.yaml`
 
 ## 2.4.0
 
